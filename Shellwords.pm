@@ -7,7 +7,7 @@ require Exporter;
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.02';
+$VERSION = '1.03';
 
 @EXPORT = qw(shellwords);
 
@@ -16,7 +16,7 @@ sub shellwords {
             : defined $_ ? $_
 	    : ();
   return unless @args;
-  Text::Shellwords::Raw::shellwords(@args);
+  Text::Shellwords::Raw::shellwords(map {$_||''} @args); # prevent uninit variable warnings from shellwords.pl
 }
 
 1;
