@@ -9,7 +9,7 @@ use Text::ParseWords 'shellwords';
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.04';
+$VERSION = '1.05';
 
 @EXPORT = qw(shellwords);
 
