@@ -7,13 +7,16 @@ require Exporter;
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 @EXPORT = qw(shellwords);
 
 sub shellwords {
-  return unless @_;
-  Text::Shellwords::Raw::shellwords(@_);
+  my @args = @_          ? @_
+            : defined $_ ? $_
+	    : ();
+  return unless @args;
+  Text::Shellwords::Raw::shellwords(@args);
 }
 
 1;
