@@ -10,7 +10,7 @@ use Text::ParseWords();
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.06';
+$VERSION = '1.07';
 
 @EXPORT = qw(shellwords);
 
@@ -18,6 +18,7 @@ sub shellwords {
   my @args = @_;
   @args    = $_ unless @args;
   foreach(@args) {
+    $_ = '' unless defined $_;
     s/^\s+//;
     s/\s+$//;
   }
