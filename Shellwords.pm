@@ -5,13 +5,24 @@ package Text::Shellwords;
 use strict;
 require Exporter;
 
-use Text::ParseWords 'shellwords';
+use Text::ParseWords();
+
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.05';
+$VERSION = '1.06';
 
 @EXPORT = qw(shellwords);
+
+sub shellwords {
+  my @args = @_;
+  @args    = $_ unless @args;
+  foreach(@args) {
+    s/^\s+//;
+    s/\s+$//;
+  }
+  Text::ParseWords::shellwords(@args);
+}
 
 1;
 
