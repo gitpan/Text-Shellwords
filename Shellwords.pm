@@ -5,24 +5,15 @@ package Text::Shellwords;
 use strict;
 require Exporter;
 
+use Text::ParseWords 'shellwords';
+
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 @EXPORT = qw(shellwords);
 
-sub shellwords {
-  my @args = @_          ? @_
-            : defined $_ ? $_
-	    : ();
-  return unless @args;
-  Text::Shellwords::Raw::shellwords(map {$_||''} @args); # prevent uninit variable warnings from shellwords.pl
-}
-
 1;
-
-package Text::Shellwords::Raw;
-require 'shellwords.pl';
 
 __END__
 
@@ -38,6 +29,13 @@ Text::Shellwords
   @words = shellwords();
 
 =head1 DESCRIPTION
+
+This used to be a wrapper around shellwords.pl, but has now been
+superseded by Text::ParseWords.  Use that module insteade.  If you
+use this module, it will simply report the shellwords() function from
+Text::ParseWords.
+
+The old description follows:
 
 This is a thin wrapper around the shellwords.pl package, which comes
 preinstalled with Perl.  This module imports a single subroutine,
