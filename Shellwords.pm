@@ -4,15 +4,22 @@ package Text::Shellwords;
 
 use strict;
 require Exporter;
-require 'shellwords.pl';
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 @EXPORT = qw(shellwords);
 
+sub shellwords {
+  return unless @_;
+  Text::Shellwords::Raw::shellwords(@_);
+}
+
 1;
+
+package Text::Shellwords::Raw;
+require 'shellwords.pl';
 
 __END__
 
