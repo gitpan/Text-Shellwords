@@ -10,13 +10,13 @@ use Text::ParseWords();
 
 use vars qw(@ISA @EXPORT $VERSION);
 @ISA = 'Exporter';
-$VERSION = '1.07';
+$VERSION = '1.08';
 
 @EXPORT = qw(shellwords);
 
 sub shellwords {
   my @args = @_;
-  @args    = $_ unless @args;
+  return unless @args;
   foreach(@args) {
     $_ = '' unless defined $_;
     s/^\s+//;
@@ -38,7 +38,6 @@ Text::Shellwords
   use Text::Shellwords;
   @words = shellwords($line);
   @words = shellwords(@lines);
-  @words = shellwords();
 
 =head1 DESCRIPTION
 
@@ -58,9 +57,10 @@ and can be delimited by single or double quotes.  The module also
 respects backslash escapes.
 
 If called with one or more arguments, shellwords() will treat each
-argument as a line of text, parse it, and return the tokens.  If
-called without any arguments, shellwords() will parse B<$_> and
-clobber it.
+argument as a line of text, parse it, and return the tokens.
+
+Note that the old behavior of parsing $_ if no arguments are provided
+is no longer supported. Sorry.
 
 =head1 BUGS
 

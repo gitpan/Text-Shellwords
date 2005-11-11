@@ -6,7 +6,7 @@
 # change 'tests => 1' to 'tests => last_test_to_print';
 
 use Test;
-BEGIN { plan tests => 7 };
+BEGIN { plan tests => 6 };
 use Text::Shellwords;
 ok(1); # If we made it this far, we're ok.
 
@@ -19,6 +19,4 @@ ok(join(',',shellwords('one two three')),'one,two,three');
 ok(join(',',shellwords('one\ two three')),'one two,three');
 ok(join(',',shellwords('"one two" three')),'one two,three');
 ok(join(',',shellwords(qq(one two\tthree))),'one,two,three');
-$_ = 'one two three';
-ok(join(',',shellwords),'one,two,three');
 ok(join(',',shellwords('one two three',' four five six')),'one,two,three,four,five,six');

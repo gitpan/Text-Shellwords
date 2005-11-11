@@ -4,3 +4,4 @@ MANIFEST
 README
 Shellwords.pm
 test.pl
+META.yml                                 Module meta-data (added by MakeMaker)
